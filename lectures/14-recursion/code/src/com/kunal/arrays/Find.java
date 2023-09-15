@@ -12,7 +12,7 @@ public class Find {
 //        System.out.println(list);
 
 //        ArrayList<Integer> list = new ArrayList<>();
-//        ArrayList<Integer> ans = findAllIndex(arr, 4, 0, list);
+    //    ArrayList<Integer> ans = findAllIndex(arr, 4, 0, list);
 //        System.out.println(ans);
 //        System.out.println(list);
 
