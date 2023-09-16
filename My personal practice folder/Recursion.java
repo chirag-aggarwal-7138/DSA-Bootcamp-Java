@@ -4,7 +4,14 @@ public class Recursion {
     public static void main(String[] args) {
         int[] nums = {5, 6, 7, 8, 9, 1, 2, 3};
         // System.out.println(reverseDigitsNum(12345, (int)Math.log10(12345) + 1));
+<<<<<<< HEAD
         System.out.println(RBSRecursion(nums, 9, 0, nums.length - 1));
+=======
+        selectionRecursion(nums,nums.length, 0, 0);
+        for (int i = 0; i < nums.length; i++) {
+            System.out.println(nums[i]);
+        }
+>>>>>>> 9c6d1d7 (added some files)
     }
 
     public static void printNumberss(int i) {
@@ -155,4 +162,43 @@ public class Recursion {
 
         return RBSRecursion(nums, target, s, m - 1);
     }
+<<<<<<< HEAD
+=======
+
+    public static bubbleSortRecursion(int[] nums, int r, int c) {
+        if (r == 0) {
+            return;
+        }
+
+        if (c < r) {
+            if (nums[c] > nums[c + 1]) {
+                int temp = nums[c];
+                nums[c] = nums[c + 1];
+                nums[c + 1] = temp;
+            }
+
+            bubbleSortRecursion(nums, r, ++c);
+        } else {
+            bubbleSortRecursion(nums, --r, 0);
+        }
+    }
+
+    public static void selectionRecursion(int[] nums, int r, int c, int max) {
+        if (r == 0) {
+            return;
+        }
+        if (c < r) {
+            if (nums[c] > nums[max]) {
+                selectionRecursion(nums, r, ++c, c);
+            } else {
+                selectionRecursion(nums, r, ++c, max);
+            }
+        } else {
+            int temp = nums[max];
+            nums[max] = nums[r - 1];
+            nums[r - 1] = temp;
+            selectionRecursion(nums, r - 1, 0, 0);
+        }
+    } 
+>>>>>>> 9c6d1d7 (added some files)
 }
