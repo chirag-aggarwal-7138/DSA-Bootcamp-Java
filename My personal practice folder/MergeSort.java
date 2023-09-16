@@ -4,7 +4,9 @@ public class MergeSort {
     public static void main(String[] args) {
         int[] nums = {2, 4, 6, 1, 5, 7};
         // System.out.println(Arrays.toString(mergeSort(nums)));
-        mergeSortInplace(nums, 0, nums.length);
+        // mergeSortInplace(nums, 0, nums.length);
+        // System.out.println(Arrays.toString(nums));
+        quickSort(nums, 0, nums.length - 1);
         System.out.println(Arrays.toString(nums));
     }
 
@@ -96,5 +98,37 @@ public class MergeSort {
         for (int x = 0; x < mix.length; x++) {
             nums[s + x] = mix[x];
         }
+    }
+
+    public static void quickSort(int[] nums, int low, int high) {
+        if (low >= high) {
+            return;
+        }
+
+        int s = low;
+        int e = high;
+        int m = s + (e - s) / 2;
+        int pivot = nums[m];
+
+        while (s <= e) {
+            while (nums[s] < pivot) {
+                s++;
+            }
+
+            while (nums[e] > pivot) {
+                e--;
+            }
+
+            if (s <= e) {
+                int temp = nums[s];
+                nums[s] = nums[e];
+                nums[e] = temp;
+                s++;
+                e--;
+            }
+        }
+
+        quickSort(nums, low, e);
+        quickSort(nums, s, high);
     }
 }
