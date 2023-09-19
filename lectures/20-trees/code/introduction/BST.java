@@ -1,4 +1,4 @@
-class BST {
+  class BST {
   public class Node {
     private int value;
     private Node left;
