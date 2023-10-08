@@ -1,5 +1,4 @@
 public class SegmentTrees {
-    
 
     // Node definition
     private static class Node {
@@ -10,11 +9,10 @@ public class SegmentTrees {
         Node left;
 
         public Node(int startInterval, int endInterval) {
-        this.startInterval = startInterval;
-        this.endInterval = endInterval;
+            this.startInterval = startInterval;
+            this.endInterval = endInterval;
         }
     }
-
 
     // Initial root
     Node root;
@@ -24,7 +22,6 @@ public class SegmentTrees {
         // create a tree using this array
         this.root = constructTree(nums, 0, nums.length - 1);
     }
-
 
     // construct tree
     private Node constructTree(int[] nums, int start, int end) {
@@ -47,7 +44,6 @@ public class SegmentTrees {
         return node;
     }
 
-
     // Display
     public void display() {
         display(this.root);
@@ -55,7 +51,6 @@ public class SegmentTrees {
 
     private void display(Node node) {
         String str = "";
-
 
         // for left node
         if (node.left != null) {
@@ -103,10 +98,9 @@ public class SegmentTrees {
         }
     }
 
-
     // Update
     public void update(int index, int value) {
-        this.root.data = update(this.root,index, value);
+        this.root.data = update(this.root, index, value);
     }
 
     private int update(Node node, int index, int value) {

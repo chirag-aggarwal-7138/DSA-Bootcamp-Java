@@ -59,7 +59,7 @@ class PathSum {
     if(index >= arr.length || node.val != arr[index]) {
       return false;
     }
-    if(node.left == null && node.right == null && index = arr.length - 1) {
+    if(node.left == null && node.right == null && index == arr.length - 1) {
       return true;
     } 
     return helper(node.left, arr, index + 1) || helper(node.right, arr, index + 1);
