@@ -1,6 +1,6 @@
 public class ReverseDigits {
     public static void main(String[] args) {
-        int ans = zeros(30204, 0);
+        int ans = zeros(302040010, 0);
         System.out.println(ans);
     }
 
