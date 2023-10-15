@@ -2,133 +2,61 @@ import java.util.Arrays;
 
 public class MergeSort {
     public static void main(String[] args) {
-        int[] nums = {2, 4, 6, 1, 5, 7};
-        // System.out.println(Arrays.toString(mergeSort(nums)));
-        // mergeSortInplace(nums, 0, nums.length);
-        // System.out.println(Arrays.toString(nums));
-        quickSort(nums, 0, nums.length - 1);
-        System.out.println(Arrays.toString(nums));
+        int[] nums = { 8, 3, 4, 12, 5, 6 };
+        System.out.println(Arrays.toString(mergerSort2(nums, 0, nums.length - 1)));
     }
 
-    public static int[] mergeSort(int nums[]) {
+    static int[] mergerSort(int[] nums) {
         if (nums.length == 1) {
             return nums;
         }
 
-        int mid = nums.length / 2;
-        int[] left = mergeSort(Arrays.copyOfRange(nums, 0, mid));
-        int[] right = mergeSort(Arrays.copyOfRange(nums, mid, nums.length));
+        int[] left = mergerSort(Arrays.copyOfRange(nums, 0, nums.length / 2));
+        int[] right = mergerSort(Arrays.copyOfRange(nums, nums.length / 2, nums.length));
 
         return merge(left, right);
     }
 
-    // public static int[] merge(int[] nums, int[] nums) {
-    //     int[] mix = new int[nums.length + nums.length];
-
-    //     int i = 0;
-    //     while (nums < nums.length && nums < nums.length) {
-    //         if (nums[nums] < nums[nums]) {
-    //             mix[i] = nums[nums];
-    //             nums++;
-    //             i++;
-    //         } else {
-    //             mix[i] = nums[nums];
-    //             nums++;
-    //             i++;
-    //         }
-    //     }
-
-    //     while(nums < nums.length) {
-    //         mix[i] = nums[nums];
-    //         nums++;
-    //         i++;
-    //     }
-
-    //     while (nums < nums.length) {
-    //         mix[i] = nums[nums];
-    //         nums++;
-    //         i++;
-    //     }
-        
-    //     return mix;
-    // }
-
-    public static void mergeSortInplace(int nums[], int s, int e) {
-        if (e - s == 1) {
-            return;
-        }
-
-        int m = s + (e - s) / 2;
-        mergeSortInplace(nums, s, m);
-        mergeSortInplace(nums, m, e);
-
-        mergeInplace(nums, s, m, e);
-    }
-
-    public static void mergeInplace(int[] nums, int s, int m, int e) {
-        int[] mix = new int[e - s];
-
-        int j = m;
+    static int[] merge(int[] left, int[] right) {
+        int i = 0;
+        int j = 0;
         int k = 0;
-        int i = s;
-        while (i < m && j < e) {
-            if (nums[i] < nums[j]) {
-                mix[k] = nums[i];
-                k++;
+        int[] ans = new int[left.length + right.length];
+
+        while (i < left.length && j < right.length) {
+            if (left[i] < right[j]) {
+                ans[k] = left[i];
                 i++;
             } else {
-                mix[k] = nums[j];
-                k++;
+                ans[k] = right[j];
                 j++;
             }
+            k++;
         }
 
-        while(i < m) {
-            mix[k] = nums[i];
-            k++;
+        while (i < left.length) {
+            ans[k] = left[i];
             i++;
+            k++;
         }
 
-        while (j < e) {
-            mix[k] = nums[j];
-            k++;
+        while (j < right.length) {
+            ans[k] = right[j];
             j++;
+            k++;
         }
-        
-        for (int x = 0; x < mix.length; x++) {
-            nums[s + x] = mix[x];
-        }
+        return ans;
     }
 
-    public static void quickSort(int[] nums, int low, int high) {
-        if (low >= high) {
-            return;
+    static int[] mergerSort2(int[] nums, int s, int e) {
+        if (s == e) {
+            return s;
         }
-
-        int s = low;
-        int e = high;
         int m = s + (e - s) / 2;
-        int pivot = nums[m];
 
-        while (s <= e) {
-            while (nums[s] < pivot) {
-                s++;
-            }
+        int left = mergerSort2(nums, 0, m - 1);
+        int right = mergerSort2(nums, m, e);
 
-            while (nums[e] > pivot) {
-                e--;
-            }
-
-            if (s <= e) {
-                int temp = nums[s];
-                nums[s] = nums[e];
-                nums[e] = temp;
-                s++;
-                e--;
-            }
-        }
-
-        quickSort(nums, low, e);
-        quickSort(nums, s, high);
+        return merge(left, right);
     }
 }
