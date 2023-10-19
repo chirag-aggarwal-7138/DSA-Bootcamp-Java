@@ -1,3 +1,4 @@
+
 package com.kunal.backtracking;
 
 public class NQueens {
