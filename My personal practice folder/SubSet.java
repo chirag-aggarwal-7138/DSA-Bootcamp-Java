@@ -4,7 +4,8 @@ public class SubSet {
     public static void main(String[] args) {
         // System.out.println(subSet3("", "abc"));
         // System.out.println(subSet4("", "abc"));
-        subSetAscii("", "abc");
+        // System.out.println(subSet2("", "abc", new ArrayList<>()));
+        System.out.println(palindromicPartition("geeks"));
     }
 
     /**
@@ -26,6 +27,7 @@ public class SubSet {
     static ArrayList<String> subSet2(String p, String up, ArrayList<String> lst) {
         if (up == "") {
             lst.add(p);
+            lst.sort(null);
             return lst;
         }
 
@@ -76,5 +78,34 @@ public class SubSet {
         subSetAscii(p + up.charAt(0), up.substring(1));
         subSetAscii(p + (up.charAt(0) + 0), up.substring(1));
         return;
+    }
+
+    static boolean isPalindrome(String str) {
+        int s = 0;
+        int e = str.length() - 1;
+
+        while (s < e) {
+            if (str.charAt(s) != str.charAt(e)) {
+                return false;
+            } else {
+                s++;
+                e--;
+            }
+        }
+        return true;
+    }
+
+    static ArrayList<String> palindromicPartition(String str) {
+        ArrayList<String> ans = new ArrayList<>();
+
+        ArrayList<String> subset = subSet2("", str, new ArrayList<>());
+        String[] subSet = new String[subset.size()];
+        subSet = subset.toArray(subSet);
+        for (String i : subSet) {
+            if (isPalindrome(i)) {
+                ans.add(i);
+            }
+        }
+        return ans;
     }
 }
