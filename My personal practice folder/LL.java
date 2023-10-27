@@ -82,6 +82,31 @@ public class LL {
         size++; // increment the size of the list
     }
 
+    public void insertRecursion(int val, int index, Node temp) {
+
+        if (index == 0) {
+            insertFirst(val);
+            return;
+        }
+
+        if (index == size) {
+            insertLast(val);
+            return;
+        }
+        
+        if (index == 1) {
+            Node newNode = new Node(val);
+            newNode.next = temp.next;
+            temp.next = newNode;
+            size++;
+            return;
+        }
+
+        temp = temp.next;
+        insertRecursion(val, index - 1, temp); 
+        return;
+    }
+
     /**
      * Deletes the first node in the list.
      */
@@ -228,6 +253,8 @@ public class LL {
         list.deleteFirst(); // delete the first node in the list
         list.deleteFirst(); // delete the first node in the list
         list.deleteLast(); // delete the last node in the list
+        list.insertRecursion(6, 2, list.head);
+        list.insertRecursion(8, 5, list.head);
         list.display(); // display the contents of the list
     }
 }
