@@ -49,6 +49,18 @@ public class BST {
         return root;
     }
 
+    public boolean balanced(Node root) {
+        if (root == null) {
+            return true;
+        }
+
+        if (Math.abs(node.left.heigh - node.right.heigh <= 1)) {
+            return true;
+        }
+
+        return balanced(root.left) && balanced(root.right);
+    }
+
     public class Node {
         int val;
         Node left;
