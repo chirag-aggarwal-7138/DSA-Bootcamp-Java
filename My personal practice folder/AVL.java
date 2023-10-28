@@ -83,71 +83,63 @@ public class AVL {
         return rotate(node);
     }
 
-
-    // Rotate node
     private Node rotate(Node node) {
         if (height(node.left) - height(node.right) > 1) {
-            // left heavy
+            // Left heavy
             if (height(node.left.left) - height(node.left.right) > 0) {
-                // left left case
+                // Left left case
                 return rightRotate(node);
             }
 
             if (height(node.left.left) - height(node.left.right) < 0) {
-                // left right case
+                // Left right case
                 node.left = leftRotate(node.left);
                 return rightRotate(node);
             }
         }
 
-        if (height(node.left) - height(node.right) < 1) {
+        if (height(node.left) - height(node.right) < -1) {
             // right heavy
-            if (height(node.right.left) - height(node.right.right) < 0) {
+            if (height(node.right.right) - height(node.right.left) > 0) {
                 // right right case
                 return leftRotate(node);
             }
 
-            if (height(node.right.left) - height(node.right.right) > 0) {
-                // right left case
+            if (height(node.right.right) - height(node.right.left) < 0) {
+                // Right left case
                 node.right = rightRotate(node.right);
                 return leftRotate(node);
             }
         }
-
         return node;
     }
 
-
-    // Right Rotate
-    public Node rightRotate(Node p) {
+    private Node rightRotate(Node node) {
+        Node p = node;
         Node c = p.left;
-        Node t = c.right;
+        Node t2 = c.right;
 
         c.right = p;
-        p.left = t;
+        p.left = t2;
 
-        p.height = Math.max(height(p.left), height(p.right) + 1);
-        c.height = Math.max(height(c.left), height(c.right) + 1);
-
+        p.height = Math.max(height(p.left), height(p.right)) + 1;
+        c.height = Math.max(height(c.left), height(c.right)) + 1;
         return c;
     }
 
-
-    // Left Rotate
-    public Node leftRotate(Node c) {
+    private Node leftRotate(Node node) {
+        Node c = node;
         Node p = c.right;
-        Node t = p.left;
+        Node t2 = p.left;
 
         p.left = c;
-        c.right = t;
+        c.right = t2;
 
-        p.height = Math.max(height(p.left), height(p.right) + 1);
-        c.height = Math.max(height(c.left), height(c.right) + 1);
-
+        p.height = Math.max(height(p.left), height(p.right)) + 1;
+        c.height = Math.max(height(c.left), height(c.right)) + 1;
         return p;
     }
-
-
+    
     // Checking balanced or not
     public boolean balanced() {
         return balanced(root);

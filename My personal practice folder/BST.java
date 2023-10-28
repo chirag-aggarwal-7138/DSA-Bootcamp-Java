@@ -61,6 +61,49 @@ public class BST {
         return balanced(root.left) && balanced(root.right);
     }
 
+    public void populateSorted(int[] nums, int s, int e) {
+        if (s >= e) {
+            return;
+        }
+
+        int m = (s + e) / 2;
+
+        insert(root, nums[m]);
+        populateSorted(nums, s, m);
+        populateSorted(nums, m + 1, e);
+    }
+
+    public void inorder(Node root) {
+        if (root == null) {
+            return;
+        }
+
+        inorder(root.left);
+        System.out.println(root.val);
+        inorder(root.right);
+    }
+
+    public void preorder(Node root) {
+        if (root == null) {
+            return;
+        }
+        System.out.println(root.val);
+
+        inorder(root.left);
+        inorder(root.right);
+    }
+
+    public void postorder(Node root) {
+        if (root == null) {
+            return;
+        }
+        
+        inorder(root.left);
+        inorder(root.right);
+
+        System.out.println(root.val);
+    }
+
     public class Node {
         int val;
         Node left;
