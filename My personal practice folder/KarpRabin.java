@@ -1,7 +1,16 @@
-public class KarbRabin {
-    
+/**
+ * The Karp-Rabin algorithm is a string searching algorithm that finds the occurrence of a pattern in a text.
+ */
+
+public class KarpRabin {
+
     private final int PRIME = 101;
 
+    /**
+     * Calculates the hash value of a given string using the Karp-Rabin algorithm.
+     * @param str The string to calculate the hash value for.
+     * @return The hash value of the given string.
+     */
     private long calculateHash(String str) {
         long hash = 0;
 
@@ -12,6 +21,14 @@ public class KarbRabin {
         return hash;
     }
 
+    /**
+     * Updates the hash value of a string after a character is replaced.
+     * @param prevHash The previous hash value of the string.
+     * @param oldChar The character being replaced.
+     * @param newChar The new character.
+     * @param patternLength The length of the pattern being searched for.
+     * @return The updated hash value of the string.
+     */
     private long updateHash(long prevHash, char oldChar, char newChar, int patternLength) {
         long newHash = (prevHash - oldChar) / PRIME;
 
@@ -19,6 +36,11 @@ public class KarbRabin {
         return newHash;
     }
 
+    /**
+     * Searches for a pattern in a given text using the Karp-Rabin algorithm.
+     * @param text The text to search for the pattern in.
+     * @param pattern The pattern to search for.
+     */
     public void search(String text, String pattern) {
         long patternLength = pattern.length();
         long patternHash = calculateHash(pattern);

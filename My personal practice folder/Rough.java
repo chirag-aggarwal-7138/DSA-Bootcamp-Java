@@ -8,5 +8,9 @@ public class Rough {
         map.put("Aarshi", 18);
 
         System.out.println(map);
+
+        String name = "civo";
+        int code = name.hashCode();
+        System.out.println(code);
     }
 }

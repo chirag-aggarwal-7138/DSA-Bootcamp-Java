@@ -1,9 +1,14 @@
 import java.util.ArrayList;
 
-class Heap<T extends Comparable<T>> {
+/**
+ * A generic class representing a Heap data structure.
+ * The Heap is implemented using an ArrayList and supports insertion, removal, and heap sort.
+ * @param <T> the type of elements stored in the Heap, must implement Comparable interface.
+ */
+public class Heap<T extends Comparable<T>> {
 
   private ArrayList<T> list;
-
+  
   public Heap() {
     list = new ArrayList<>();
   }
@@ -30,10 +35,12 @@ class Heap<T extends Comparable<T>> {
     list.add(value);
     upheap(list.size() - 1);
   }
+
   private void upheap(int index) {
     if(index == 0) {
       return;
     }
+
     int p = parent(index);
     if(list.get(index).compareTo(list.get(p)) < 0) {
       swap(index, p);
@@ -56,6 +63,7 @@ class Heap<T extends Comparable<T>> {
     
     return temp;
   }
+
   private void downheap(int index) {
     int min = index;
     int left = left(index);
@@ -77,9 +85,27 @@ class Heap<T extends Comparable<T>> {
 
   public ArrayList<T> heapSort() throws Exception {
     ArrayList<T> data = new ArrayList<>();
+
     while(!list.isEmpty()) {
       data.add(this.remove());
     }
+
     return data;
+  }
+
+  public static void main(String args[]) throws Exception{
+    Heap<Integer> heap = new Heap<>();
+
+    heap.insert(4);
+    heap.insert(5);
+    heap.insert(7);
+    heap.insert(9);
+    heap.insert(6);
+
+    System.out.println(heap.list);
+
+    heap.remove();
+
+    System.out.println(heap.heapSort());
   }
 }

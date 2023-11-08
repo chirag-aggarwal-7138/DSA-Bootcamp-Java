@@ -40,4 +40,12 @@ public class MapUsingHash {
             this.value = value;
         }
     }
+
+    public static void main(String[] args) {
+        
+        MapUsingHash map = new MapUsingHash();
+
+        map.put("chirag", "Aggaral");
+        System.out.println(map.get("chirag"));
+    }
 }
